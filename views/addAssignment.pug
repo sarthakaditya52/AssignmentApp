@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    form(method='POST', action='api/admin/createAssignments')
+        #form-group
+            label Name
+            input.form-control(name='name', type='text')

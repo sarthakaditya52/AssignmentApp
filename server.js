@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path'); 
-
+const ExpressHandelbars = require('express-handlebars')
 const config = require('config');
 
 const app = express();
@@ -23,6 +23,18 @@ mongoose
     .then(() => console.log('MongoDB Connected....'))
     .catch(err => console.log(err));
 
+// Load Views 
+app.set('views',path.join(__dirname, 'views'));
+app.set('view engine','pug');
+
+// Routes
+app.use('/api/admin', require('./routes/api/admin'));
+
+app.get('/', (req,res) => {
+    res.render('index', {
+        title: 'Hee Hee'
+    })
+})    
     
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
