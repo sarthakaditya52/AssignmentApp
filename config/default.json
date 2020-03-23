@@ -1,0 +1,4 @@
+{
+    "mongoURI": "Add_your_mongoDB_URI",
+    "jwtSecret": "ll_myJWTSecret"
+}
