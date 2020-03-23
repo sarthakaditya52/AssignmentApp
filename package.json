@@ -1,0 +1,28 @@
+{
+  "name": "assignmentapp",
+  "version": "1.0.0",
+  "description": "Assignments CRUD App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarthakaditya52/AssignmentApp.git"
+  },
+  "author": "Sarthak Aditya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sarthakaditya52/AssignmentApp/issues"
+  },
+  "homepage": "https://github.com/sarthakaditya52/AssignmentApp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mongoose": "^5.9.5",
+    "nodemon": "^2.0.2"
+  }
+}
