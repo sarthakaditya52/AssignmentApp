@@ -1,7 +1,20 @@
 extends layout
 
 block content
-    form(method='POST', action='api/admin/createAssignments')
+    form(method='POST', action='/api/admin/createAssignments')
         #form-group
             label Name
             input.form-control(name='name', type='text')
+        #form-group
+            label Task
+            input.form-control(name='task', type='string')
+        #form-group
+            label Day
+            select.form-control(name='day', type='number')
+                option(value='1') Monday
+                option(value='2') Tuesday
+                option(value='3') Wednesday
+                option(value='4') Thursday
+                option(value='5') Friday
+                option(value='6') Saturday
+        input.btn.btn-primary(type='submit', value='Submit')

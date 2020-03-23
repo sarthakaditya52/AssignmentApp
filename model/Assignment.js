@@ -14,6 +14,6 @@ const AssignSchema = new Schema({
         type: String,
         required: true
     }
-})
+});
 
 module.exports = Assignment = mongoose.model('assignment', AssignSchema);
