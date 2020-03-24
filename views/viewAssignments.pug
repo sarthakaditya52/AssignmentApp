@@ -1,0 +1,94 @@
+extends layout
+
+block content
+    h1 #{title}
+    table.table
+        tr
+            td Day
+            each course, i in courses
+                td #{course.name}
+        tr
+            td Monday
+            each course, i in courses
+                if courses[i].assignments.length < 1
+                    td ----
+                each assignment, j in course.assignments
+                    if assignment.day == 1
+                        td
+                            a(href='/api/admin/Assignment/'+assignment._id) #{assignment.task}
+                        - courses[i].assignments.splice(j,1);
+                        - break
+                    else
+                        td ----
+                        - break
+        tr
+            td Tuesday
+            each course, i in courses
+                if courses[i].assignments.length < 1
+                    td ----
+                each assignment, j in course.assignments
+                    if assignment.day == 2
+                        td
+                            a(href='/api/admin/Assignment/'+assignment._id) #{assignment.task}
+                        - courses[i].assignments.splice(j,1);
+                        - break
+                    else
+                        td ----
+                        - break
+        tr
+            td Wednesday
+            each course, i in courses
+                if courses[i].assignments.length < 1
+                    td ----
+                each assignment, j in course.assignments
+                    if assignment.day == 3
+                        td
+                            a(href='/api/admin/Assignment/'+assignment._id) #{assignment.task}
+                        - courses[i].assignments.splice(j,1);
+                        - break
+                    else
+                        td ----
+                        - break
+        tr
+            td Thursday
+            each course, i in courses
+                if courses[i].assignments.length < 1
+                    td ----
+                each assignment, j in course.assignments
+                    if assignment.day == 4
+                        td
+                            a(href='/api/admin/Assignment/'+assignment._id) #{assignment.task}
+                        - courses[i].assignments.splice(j,1);
+                        - break
+                    else
+                        td ----
+                        - break
+        tr
+            td Friday
+            each course, i in courses
+                if courses[i].assignments.length < 1
+                    td ----
+                each assignment, j in course.assignments
+                    if assignment.day == 5
+                        td
+                            a(href='/api/admin/Assignment/'+assignment._id) #{assignment.task}
+                        - courses[i].assignments.splice(j,1);
+                        - break
+                    else
+                        td ----
+                        - break
+        tr
+            td Saturday
+            each course, i in courses
+                if courses[i].assignments.length < 1
+                    td ----
+                each assignment, j in course.assignments
+                    if assignment.day == 6
+                        td
+                            a(href='/api/admin/Assignment/'+assignment._id) #{assignment.task}
+                        - courses[i].assignments.splice(j,1);
+                        - break
+                    else
+                        td ----
+                        - break
+

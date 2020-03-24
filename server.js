@@ -33,8 +33,8 @@ app.use('/api/admin', require('./routes/api/admin'));
 app.get('/', (req,res) => {
     res.render('index', {
         title: 'Hee Hee'
-    })
-})    
+    });
+});
     
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

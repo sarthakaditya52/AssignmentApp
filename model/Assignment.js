@@ -6,10 +6,6 @@ const AssignSchema = new Schema({
         type: Number,
         required: true
     },
-    name: {
-        type: String,
-        required: true
-    },
     task: {
         type: String,
         required: true
