@@ -27,10 +27,7 @@ router.get('/createAssignments', function (req, res) {
 // @access ->->Public
 
 router.post('/createAssignments', function (req, res) {
-  var _req$body = req.body,
-      name = _req$body.name,
-      task = _req$body.task,
-      day = _req$body.day;
+  var name = req.body.name;
   Course.findOne({
     name: name
   }).then(function (course, err) {
@@ -83,6 +80,137 @@ router.get('/Assignments', function (req, res) {
       res.render('viewAssignments', {
         title: 'Assignments',
         courses: courses
+      });
+    }
+  });
+}); // @route ->-> GET  api/admin/Assignment/:id 
+// @description ->-> View Single Assignment 
+// @access ->-> Public
+
+router.get('/Assignment/:id', function (req, res) {
+  Course.find({}, function (err, courses) {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      assignment = new Assignment();
+      var Course = '';
+
+      for (var i = 0; i < courses.length; i++) {
+        for (var j = 0; j < courses[i].assignments.length; j++) {
+          if (courses[i].assignments[j]._id == req.params.id) {
+            assignment = courses[i].assignments[j];
+            Course = courses[i].name;
+            j = courses[i].assignments.length + 1;
+            i = courses.length + 1;
+            break;
+          }
+        }
+      }
+
+      res.render('updateAssignment', {
+        title: 'Edit or Remove Assignment',
+        course: Course,
+        assignment: assignment
+      });
+    }
+  });
+}); // @route ->-> POST api/admin/deleteAssignment/:id
+// @description ->-> Delete Assignments 
+// @access ->-> Public
+
+router.post('/deleteAssignment/:id', function (req, res) {
+  var id = null;
+  var course = {};
+  var flag = false;
+  Course.find({}, function (err, courses) {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      for (var i = 0; i < courses.length; i++) {
+        for (var j = 0; j < courses[i].assignments.length; j++) {
+          if (courses[i].assignments[j]._id == req.params.id) {
+            courses[i].assignments.splice(j, 1);
+            if (courses[i].assignments.length < 1) flag = true;
+            id = courses[i]._id;
+            course.name = courses[i].name;
+            course.assignments = courses[i].assignments;
+            j = courses[i].assignments.length + 1;
+            i = courses.length + 1;
+            break;
+          }
+        }
+      }
+
+      var query = {
+        _id: id
+      };
+
+      if (flag) {
+        Course.deleteOne(query, function (err) {
+          if (err) {
+            console.log(err);
+            return;
+          } else res.render('index', {
+            title: 'Course Deleted'
+          });
+        });
+      } else {
+        Course.updateOne(query, course, function (err) {
+          if (err) {
+            console.log(err);
+            return;
+          } else res.render('index', {
+            title: 'Assignment Deleted'
+          });
+        });
+      }
+    }
+  });
+}); // @route ->-> POST api/admin/deleteAssignment/:id
+// @description ->-> Delete Assignments 
+// @access ->-> Public
+
+router.post('/updateAssignment/:id', function (req, res) {
+  var id = null;
+  var course = {};
+  Course.find({}, function (err, courses) {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      for (var i = 0; i < courses.length; i++) {
+        for (var j = 0; j < courses[i].assignments.length; j++) {
+          if (courses[i].assignments[j]._id == req.params.id) {
+            courses[i].assignments.splice(j, 1);
+            id = courses[i]._id;
+            assignment = new Assignment();
+            assignment.task = req.body.task;
+            assignment.day = req.body.day;
+            courses[i].assignments.push(assignment);
+            courses[i].assignments.sort(function (a, b) {
+              return a.day - b.day;
+            });
+            course.name = courses[i].name;
+            course.assignments = courses[i].assignments;
+            j = courses[i].assignments.length + 1;
+            i = courses.length + 1;
+            break;
+          }
+        }
+      }
+
+      var query = {
+        _id: id
+      };
+      Course.updateOne(query, course, function (err) {
+        if (err) {
+          console.log(err);
+          return;
+        } else res.render('index', {
+          title: 'Assignment Updated'
+        });
       });
     }
   });

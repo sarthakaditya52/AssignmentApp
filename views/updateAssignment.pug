@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    form(method='POST', action='/api/admin/updateAssignment/'+assignment._id)
+        #form-group
+            label Subject : #{course}
+        #form-group
+            label Task
+            input.form-control(name='task', type='string' value=assignment.task )
+        #form-group
+            label Day
+            select.form-control(name='day', type='number')
+                option(value='1', selected=assignment.day == 1) Monday
+                option(value='2', selected=assignment.day == 2) Tuesday
+                option(value='3', selected=assignment.day == 3) Wednesday
+                option(value='4', selected=assignment.day == 4) Thursday
+                option(value='5', selected=assignment.day == 5) Friday
+                option(value='6', selected=assignment.day == 6) Saturady
+        input.btn.btn-primary(type='submit', value='Submit')
+
+    form(method='POST', action='/api/admin/deleteAssignment/'+assignment._id)
+        input.btn.btn-primary(type='submit', value='Delete')
