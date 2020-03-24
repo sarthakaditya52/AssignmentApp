@@ -5,10 +5,10 @@ block content
         #form-group
             label Subject : #{course}
         #form-group
-            label Task
+            label Assignment : 
             input.form-control(name='task', type='string' value=assignment.task )
         #form-group
-            label Day
+            label Day :
             select.form-control(name='day', type='number')
                 option(value='1', selected=assignment.day == 1) Monday
                 option(value='2', selected=assignment.day == 2) Tuesday
@@ -16,7 +16,7 @@ block content
                 option(value='4', selected=assignment.day == 4) Thursday
                 option(value='5', selected=assignment.day == 5) Friday
                 option(value='6', selected=assignment.day == 6) Saturady
-        input.btn.btn-primary(type='submit', value='Submit')
+        input.btn.btn-primary(type='submit', value='Update')
 
     form(method='POST', action='/api/admin/deleteAssignment/'+assignment._id)
         input.btn.btn-primary(type='submit', value='Delete')

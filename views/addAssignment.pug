@@ -1,15 +1,16 @@
 extends layout
 
 block content
+    h1 Create Assignments
     form(method='POST', action='/api/admin/createAssignments')
         #form-group
-            label Name
+            label Subject Name :
             input.form-control(name='name', type='text')
         #form-group
-            label Task
+            label Assignment :
             input.form-control(name='task', type='string')
         #form-group
-            label Day
+            label Day :
             select.form-control(name='day', type='number')
                 option(value='1') Monday
                 option(value='2') Tuesday

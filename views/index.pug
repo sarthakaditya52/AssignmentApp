@@ -2,3 +2,7 @@ extends layout
 
 block content
     h1 #{title}
+    form(method='GET', action='/api/admin/Assignments')
+        input.btn.btn-primary(type='submit', value='View Assignments')
+    form(method='GET', action='/api/admin/createAssignments/')
+        input.btn.btn-primary(type='submit', value='Create Assignments')

@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1 #{title}
-    table.table
+    table.table(border='1')
         tr
             td Day/Subject
             each course, i in courses
@@ -91,4 +91,6 @@ block content
                     else
                         td ----
                         - break
-
+                        
+    form(method='GET', action='/api/admin/createAssignments/')
+        input.btn.btn-primary(type='submit', value='Create Assignments')
